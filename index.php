@@ -38,6 +38,33 @@
     ],
   ];
 
+  function getDuration($months){
+    $years = $months / 12;
+    $extraMonths = $months % 12;
+    return "$years Years $extraMonths months";
+  }
+
+
+  function printJob($job){
+
+    //if para el resto de codigo usando CONTINUE no tiene necesidad de alvergar el codigo adentro, porque esto rompe el cliclo FOR
+    if ($job['visible'] == false) {                  
+      return;
+    }    
+    //contenido de la funcion
+    echo '<li class="work-position">';
+    echo '<h5>'. $job['title'] . '</h5>';
+    echo '<p>'. $job['description'] .'</p>';
+    echo '<p>'. getDuration($job['months']) .'</p>';
+    echo '<strong>Achievements:</strong>';
+    echo '<ul>';
+    echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+    echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+    echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+    echo '</ul>';
+    echo '</li>';
+  }
+
 ?>
 
 
@@ -89,46 +116,21 @@
         <div>
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
-            
-            
+                  
             <?php 
               $totalmonths = 0;
-
               for ($idx=0; $idx < count($jobs) ; $idx++) {  
-
                 $totalmonths += $jobs[$idx]['months'];
-
                 if ($totalmonths > $limitmonths) {
                   break;
                 }
-
-                //if para el resto de codigo usando CONTINUE no tiene necesidad de alvergar el codigo adentro, porque esto rompe el cliclo FOR
-                if ($jobs[$idx]['visible'] != true) {                  
-                  continue;
-                }
-
-                echo '<li class="work-position">';
-                echo '<h5>'. $jobs[$idx]['title'] . '</h5>';
-                echo '<p>'. $jobs[$idx]['description'] .'</p>';
-                echo '<p> Months: '. $totalmonths .'</p>';
-                echo '<strong>Achievements:</strong>';
-                echo '<ul>';
-                echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-                echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-                echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-                echo '</ul>';
-                echo '</li>';
-
-              }
-              
+                
+                printJob($jobs[$idx]);
+              }              
             ?>
-
 
           </ul>
         </div>
-
-
-
         <div>
             <h3 class="border-bottom-gray">Projects</h3>
             <div class="project">
