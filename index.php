@@ -1,72 +1,13 @@
 <?php
 
+  include('jobs.php');
+
   $var1 = 1;
   $lastname = "Cuartas Bejarano";
   $name = "Oscar Stevens $lastname"; //en PHP se pueden usar comillas dobles para concatenar valores de variables
-  $limitmonths = 12;
-
-  $jobs = [
-    [
-      'title' => 'PHP Developer',
-      'description' => 'un duro en todo desarrollo, se puede aprender mas y mas, ya tiempo trabajando en este lenguaje con el aprendi a programas',
-      'visible' => true,
-      'months' => 6,
-    ],
-    [
-      'title' => 'React Native Developer',
-      'description' => 'apenas estamos aprendiendo para sacar apps moviles',
-      'visible' => false,
-      'months' => 2,
-    ],
-    [
-      'title' => 'Laravel Developer',
-      'description' => 'un duro en todo desarrollo, se puede aprender mas y mas',
-      'visible' => true,
-      'months' => 4,
-    ],
-    [
-      'title' => 'NODEJS Developer',
-      'description' => 'un duro en todo desarrollo, se puede aprender mas y mas',
-      'visible' => false,
-      'months' => 12,
-    ],
-    [
-      'title' => 'VUEJS Developer',
-      'description' => 'un duro en todo desarrollo, se puede aprender mas y mas',
-      'visible' => true,
-      'months' => 8,
-    ],
-  ];
-
-  function getDuration($months){
-    $years = $months / 12;
-    $extraMonths = $months % 12;
-    return "$years Years $extraMonths months";
-  }
-
-
-  function printJob($job){
-
-    //if para el resto de codigo usando CONTINUE no tiene necesidad de alvergar el codigo adentro, porque esto rompe el cliclo FOR
-    if ($job['visible'] == false) {                  
-      return;
-    }    
-    //contenido de la funcion
-    echo '<li class="work-position">';
-    echo '<h5>'. $job['title'] . '</h5>';
-    echo '<p>'. $job['description'] .'</p>';
-    echo '<p>'. getDuration($job['months']) .'</p>';
-    echo '<strong>Achievements:</strong>';
-    echo '<ul>';
-    echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-    echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-    echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-    echo '</ul>';
-    echo '</li>';
-  }
+  $limitmonths = 2000;
 
 ?>
-
 
 
 <!doctype html>
@@ -120,12 +61,11 @@
             <?php 
               $totalmonths = 0;
               for ($idx=0; $idx < count($jobs) ; $idx++) {  
-                $totalmonths += $jobs[$idx]['months'];
+                $totalmonths += $jobs[$idx]->months;
                 if ($totalmonths > $limitmonths) {
                   break;
-                }
-                
-                printJob($jobs[$idx]);
+                }                
+                printElement($jobs[$idx]);
               }              
             ?>
 
@@ -133,6 +73,16 @@
         </div>
         <div>
             <h3 class="border-bottom-gray">Projects</h3>
+            
+            <ul>                  
+              <?php   
+                for ($idx=0; $idx < count($projects) ; $idx++) {                   
+                  printElement($projects[$idx]);
+                }              
+              ?>
+            </ul>
+
+            
             <div class="project">
                 <h5>Project X</h5>
                 <div class="row">
