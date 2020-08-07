@@ -1,14 +1,12 @@
 <?php
 
 namespace App\Models;
+use Illuminate\Database\Eloquent\Model;
 
-class Job extends BaseElement  {
-    //la clase ya esta heredando todo de BASEELEMENT
+class Job extends Model  {
 
-    public function __construct($title, $description){
-        $newTitle = 'JOB: '.$title;
-        parent::__construct($newTitle, $description);
-    }
+    //la tabla que usara eloquent ilumminate database ORM
+    protected $table = 'jobs';
 
     //metodos
     public function getDurationAsString(){
