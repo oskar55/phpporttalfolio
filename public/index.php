@@ -30,7 +30,7 @@ $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
 
-//COMO HACER RUTAS en el proyecto
+//RUTAS basicas en el proyecto
 //si esta definid y tiene un valor = get, sino agrega '/'
 $route = $_GET['route'] ?? '/';
 
